@@ -4,17 +4,17 @@ import java.util.Scanner;
  * Write a description of class LoanMenu here.
  *
  * @author Mogens Holm Iversen
- * @version 0.1.0 Initial draft version
+ * @version 0.1.0 Initial draft version 
  */
 public class LoanMenu {
     // instance variables
-
+    
     /**
      * Constructor for objects of class LoanMenu
      */
     public LoanMenu() {
-        // initialise instance variables
-
+        // Initialize instance variables
+              
     }
 
     public void start() {
@@ -38,7 +38,7 @@ public class LoanMenu {
             }
         }
     }
-
+    
     private int writeLoanMenu() {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("****** Loan menu ******");
@@ -48,7 +48,7 @@ public class LoanMenu {
         int choice = getIntegerFromUser(keyboard);
         return choice;
     }
-
+    
     private int getIntegerFromUser(Scanner keyboard) {
         while (!keyboard.hasNextInt()) {
             System.out.println("Input must be a number - please try again.");
