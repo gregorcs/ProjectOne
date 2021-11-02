@@ -5,27 +5,25 @@ import java.util.Scanner;
  * Write a description of class MainMenu here.
  *
  * @author Mogens Holm Iversen
- * @version 0.1.0 Initial draft version 
+ * @version 0.1.0 Initial draft version
  */
 public class MainMenu {
-    // instance variables 
+    // instance variables
     private LoanMenu loanMenu;
-    
-
     /**
      * Constructor for objects of class MainMenu
      */
     public MainMenu() {
         // initialise instance variables
         loanMenu = new LoanMenu();
-        
-       
+
+
     }
-    
+
     public void start() {
         mainMenu();
     }
-    
+
     private void mainMenu() {
         boolean running = true;
         while (running) {
@@ -63,7 +61,7 @@ public class MainMenu {
         System.out.println(" (9) Generate testdata");// will generate testdata, delete in final version
         System.out.println(" (0) Quit the program");
         System.out.print("\n Choice:");
-        
+
         while (!keyboard.hasNextInt()) {
             System.out.println("Input must be a number - please try again");
             keyboard.nextLine();
@@ -71,5 +69,5 @@ public class MainMenu {
         int choice = keyboard.nextInt();
         return choice;
     }
-   
+
 }
