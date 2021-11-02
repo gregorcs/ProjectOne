@@ -24,7 +24,7 @@ public class MainMenu {
         mainMenu();
     }
     
-    private void mainMenu() {
+    void mainMenu() {
         boolean running = true;
         while (running) {
             int choice = writeMainMenu();
