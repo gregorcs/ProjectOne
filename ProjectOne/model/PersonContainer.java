@@ -1,23 +1,21 @@
-package Containers;
+package model;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import controller.Person;
-
 //Singleton
-public class ContainerPerson {
+public class PersonContainer {
 
-	private static ContainerPerson instance;
+	private static PersonContainer instance;
 	private ArrayList<Person> personList;
 	
-	private ContainerPerson () {
+	private PersonContainer () {
 		personList = new ArrayList<>();
 	}
 	/*Returns an instance, creates one if one doesn't exist*/
-	public static ContainerPerson getInstance() {
+	public static PersonContainer getInstance() {
 		if (instance == null) {
-            instance = new ContainerPerson();
+            instance = new PersonContainer();
 		}
 
         return instance;

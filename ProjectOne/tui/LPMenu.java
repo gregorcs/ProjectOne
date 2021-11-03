@@ -26,7 +26,7 @@ public class LPMenu {
 	                  controller.deleteLP();
 	                  break;
 	                case 0:
-	                  menu.mainMenu();
+	                  running = false;
 	                  break;
 	                default:
 	                  System.out.println(" Unknown error occured, choice = "+choice);

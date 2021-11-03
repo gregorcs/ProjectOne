@@ -27,7 +27,7 @@ public class MainMenu {
         mainMenu();
     }
     
-    void mainMenu() {
+    public void mainMenu() {
         boolean running = true;
         while (running) {
             int choice = writeMainMenu();
@@ -41,7 +41,7 @@ public class MainMenu {
                 case 3:
                   loanMenu.start();
                   break;
-                case 9:
+                case 4:
                   System.out.println(" Not implemented yet");
                   break;
                 case 0:
@@ -61,7 +61,7 @@ public class MainMenu {
         System.out.println(" (1) Borrower menu");
         System.out.println(" (2) LP menu");
         System.out.println(" (3) Loan menu");
-        System.out.println(" (9) Generate testdata");// will generate testdata, delete in final version
+        System.out.println(" (4) Generate testdata");// will generate testdata, delete in final version
         System.out.println(" (0) Quit the program");
         System.out.print("\n Choice:");
         

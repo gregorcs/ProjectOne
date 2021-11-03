@@ -1,6 +1,7 @@
 package tui;
 import java.util.Scanner;
-import Containers.LP_Container;
+
+import model.LP_Container;
 
 public class UpdateLPMenu {
 		 private LP_Container container;

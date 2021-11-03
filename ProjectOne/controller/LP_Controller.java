@@ -1,6 +1,8 @@
 package controller;
 import java.util.Scanner;
-import Containers.LP_Container;
+
+import model.LP;
+import model.LP_Container;
 
 public class LP_Controller {
 	private LP_Container container;
@@ -42,10 +44,18 @@ public class LP_Controller {
     public int askBarcode() {
     	int barcode;
     	Scanner keyboard = new Scanner(System.in);
-    	System.out.println("Please enter the barcode of the LP you'd like to modify: ");
+    	System.out.println("Please enter the barcode of the LP: ");
     	barcode = keyboard.nextInt();
     	
 		return barcode;
     }
 
+    public LP findLP() {
+    	LP lp = LP_Container.getInstance().findLP();
+    	return lp;
+    }
+    
+    public void printAllLP() {
+    	LP_Container.getInstance().printAllLP();
+    }
 }

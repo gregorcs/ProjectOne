@@ -1,5 +1,7 @@
 package tui;
 import java.util.Scanner;
+
+import controller.LoanController;
 /**
  * Write a description of class LoanMenu here.
  *
@@ -8,12 +10,14 @@ import java.util.Scanner;
  */
 public class LoanMenu {
     // instance variables
+    LoanController loanController;
     
     /**
      * Constructor for objects of class LoanMenu
      */
     public LoanMenu() {
         // Initialize instance variables
+    	loanController = new LoanController();
               
     }
 
@@ -23,11 +27,12 @@ public class LoanMenu {
 
     private void loanMenu() {
         boolean running = true;
+        
         while (running) {
             int choice = writeLoanMenu();
             switch (choice) {
                 case 1:
-                  System.out.println(" Not implemented yet");
+                  loanController.createLoan();
                   break;
                 case 0:
                   running = false;

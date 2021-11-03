@@ -11,7 +11,7 @@ public class PersonMenu {
 	public PersonMenu() {
 		personController = new PersonController();
 	}
-	void personMenu() {
+	public void personMenu() {
 		boolean running = true;
 		while(running) {
 			int userChoice = writePersonMenu();
@@ -28,6 +28,8 @@ public class PersonMenu {
 			case 4:
 				personController.deletePerson();
 				break;
+			case 0:
+				running = false;
             default:
                 System.out.println(" Unknown error occured, choice = "+ userChoice);
                 break;
@@ -45,7 +47,7 @@ public class PersonMenu {
         System.out.println(" (2) Get Person");
         System.out.println(" (3) Update Person");
         System.out.println(" (4) Delete Person");
-        System.out.println(" (0) Return to Main Menu");
+        System.out.println(" (0) Go back");
         System.out.print("\n Choice:");
         
         while (!keyboard.hasNextInt()) {

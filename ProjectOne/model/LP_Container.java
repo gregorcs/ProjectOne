@@ -1,4 +1,4 @@
-package Containers;
+package model;
 import java.util.ArrayList;
 import java.util.Scanner;
 import tui.UpdateLPMenu;
@@ -60,4 +60,26 @@ public class LP_Container {
     public LP getLPToModify() {
     	return LPToModify;
     }
+    
+    public void printLP(LP lp) {
+        System.out.println("Title: " + lp.getTitle());
+        System.out.println("Artist: " + lp.getArtist());
+        System.out.println("Barcode: " + lp.getBarcode());
+        System.out.println("Publication date: " + lp.getDate());
+    }
+    
+    public void printAllLP() {
+
+    	for (LP item : database) {
+    		printLP(item);
+    	}
+
+    }
+    
+    
+    
+    
+    
+    
+    
 }

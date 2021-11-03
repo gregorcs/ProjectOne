@@ -1,4 +1,4 @@
-package controller;
+package model;
 import java.util.Scanner;
 
 /**
@@ -16,6 +16,8 @@ public class LP {
     /**
      * Constructor for objects of class LP
      */
+    
+    /*TO DO add state variable*/
     public LP(int barcode, String title, String artist, int publicationDate) {
         this.barcode = barcode;
         this.title = title;
