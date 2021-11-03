@@ -21,6 +21,8 @@ public class LPMenu {
 	                  upmenu.UpdateLPMenu();
 	                  break;
 	                case 4:
+	                	/*TO DO*/
+	                	/*deleteLP asks for phone number twice*/
 	                  controller.deleteLP();
 	                  break;
 	                case 0:

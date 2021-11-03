@@ -55,28 +55,34 @@ public class ContainerPerson {
 		Person personToUpdate = searchForPerson(phoneNumber);
 		Scanner keyboard = new Scanner(System.in);
 		System.out.println("Enter number of what you want to edit: ");
-		int userChoice = keyboard.nextInt();
 		readPerson(phoneNumber);
+		int userChoice = 0;
+		userChoice = keyboard.nextInt();
+		keyboard.nextLine();
 		switch (userChoice) {
-		case '1':
+		case 1:
 			System.out.println("Enter your new name: ");
 			personToUpdate.setName(keyboard.nextLine());
 			break;
-		case '2':
+		case 2:
 			System.out.println("Enter your new address: ");
 			personToUpdate.setAddress(keyboard.nextLine());
 			break;
-		case '3':
+		case 3:
 			System.out.println("Enter your new postal code: ");
 			personToUpdate.setPostalCode(keyboard.nextInt());
 			break;
-		case '4':
+		case 4:
 			System.out.println("Enter your new city: ");
 			personToUpdate.setCity(keyboard.nextLine());
 			break;
-		case '5':
+		case 5:
 			System.out.println("Enter your new phone number: ");
 			personToUpdate.setPhone(keyboard.nextInt());
+			break;
+        default:
+            System.out.println(" Unknown error occured, choice = "+ userChoice);
+            break;
 			
 		}
 		
