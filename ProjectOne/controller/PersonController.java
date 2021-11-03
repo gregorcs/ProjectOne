@@ -34,6 +34,7 @@ public class PersonController {
 		address = keyboard.nextLine();
 		System.out.println("Please enter your postal code: ");
 		postalCode = keyboard.nextInt();
+		keyboard.nextLine();
 		System.out.println("Please enter your city: ");
 		city = keyboard.nextLine();
 		System.out.println("Please enter your phone number: ");

@@ -17,7 +17,6 @@ public class ContainerPerson {
 	/*Returns an instance, creates one if one doesn't exist*/
 	public static ContainerPerson getInstance() {
 		if (instance == null) {
-
             instance = new ContainerPerson();
 		}
 

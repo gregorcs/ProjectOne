@@ -3,8 +3,8 @@ import controller.LP_Controller;
 import java.util.Scanner;
 
 public class LPMenu {
-	 private LP_Controller controller;
-	 private UpdateLPMenu upmenu;
+	 private LP_Controller controller = new LP_Controller();
+	 private UpdateLPMenu upmenu = new UpdateLPMenu();
 	 private MainMenu menu;
 	 void LPMenu() {
 	        boolean running = true;

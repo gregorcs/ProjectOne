@@ -20,11 +20,11 @@ public class LP_Controller {
 		System.out.println("Please enter the year the LP was published in: ");
 		publicationDate = keyboard.nextInt();
 		
-		container.addLP(barcode, title, artist, publicationDate);
+		LP_Container.getInstance().addLP(barcode, title, artist, publicationDate);
     }
     
     public void getLP() {
-    	LP lp = container.findLP();
+    	LP lp = LP_Container.getInstance().findLP();
     	System.out.println("Barcode: " + lp.getBarcode());
 		System.out.println("Title: " + lp.getTitle());
 		System.out.println("Artist: " + lp.getArtist());
@@ -32,11 +32,11 @@ public class LP_Controller {
     }
     
     public void updateLP() {
-    	container.editLP(askBarcode());
+    	LP_Container.getInstance().editLP(askBarcode());
     }
     
     public void deleteLP() {
-    	container.removeLP(askBarcode());
+    	LP_Container.getInstance().removeLP(askBarcode());
     }
 
     public int askBarcode() {

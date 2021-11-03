@@ -12,14 +12,23 @@ import controller.*;
  */
 
 public class LP_Container {
-	private ArrayList <LP> database = new ArrayList <> ();
+	private ArrayList <LP> database;
+	private static LP_Container instance;
     Scanner keyboard;
     private UpdateLPMenu upmenu;
-    private LP_Controller controller;
+    private LP_Controller controller = new LP_Controller();
     LP LPToModify;
     
-    public LP_Container() {
+    private LP_Container() {
+    	database = new ArrayList<>();
+    }
+    
+    public static LP_Container getInstance() {
+    	if (instance == null) {
+    		instance = new LP_Container();
+    	}
     	
+    	return instance;
     }
     
     public void addLP(int barcode, String title, String artist, int publicationDate) {
