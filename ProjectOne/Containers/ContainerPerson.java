@@ -8,23 +8,26 @@ import controller.Person;
 //Singleton
 public class ContainerPerson {
 
-	private static ArrayList<Person> instance;
+	private static ContainerPerson instance;
+	private ArrayList<Person> personList;
 	
 	private ContainerPerson () {
-		
+		personList = new ArrayList<>();
 	}
 	/*Returns an instance, creates one if one doesn't exist*/
-	public ArrayList<Person> getInstance() {
-		if (instance == null)
-            instance = new ArrayList<Person>();
- 
+	public static ContainerPerson getInstance() {
+		if (instance == null) {
+
+            instance = new ContainerPerson();
+		}
+
         return instance;
 	}
 	
-	/* Searches for a person base on their phone number */
+	/* Searches for a person base on their phone number */	
 	public Person searchForPerson (int phoneNumber) {
 		Person person = null;
-		for (Person tempPerson : instance) {
+		for (Person tempPerson : personList) {
 			if (tempPerson.getPhone() == phoneNumber) {
 				person = tempPerson;
 			}
@@ -36,7 +39,7 @@ public class ContainerPerson {
 	
 	//adds the person to the singleton
 	public void createPerson(String name, String address, int postalCode, String city, int phone) {
-		instance.add(new Person(name, address, postalCode, city, phone));
+		personList.add(new Person(name, address, postalCode, city, phone));
 	}
 	
 	public void readPerson(int phoneNumber) {
@@ -82,7 +85,7 @@ public class ContainerPerson {
 
 	public void deletePerson(int phoneNumber) {
 		Person personToRemove = searchForPerson(phoneNumber);
-		instance.remove(personToRemove);
+		personList.remove(personToRemove);
 		
 		
 	}

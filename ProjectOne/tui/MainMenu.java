@@ -10,13 +10,16 @@ import java.util.Scanner;
 public class MainMenu {
     // instance variables 
     private LoanMenu loanMenu;
+    private PersonMenu personMenu;
+    private LPMenu lPMenu;
     /**
      * Constructor for objects of class MainMenu
      */
     public MainMenu() {
         // Initialize instance variables
         loanMenu = new LoanMenu();
-        
+        personMenu = new PersonMenu();
+        lPMenu = new LPMenu();
        
     }
     
@@ -30,10 +33,10 @@ public class MainMenu {
             int choice = writeMainMenu();
             switch (choice) {
                 case 1:
-                  System.out.println(" Not implemented yet");
+                  personMenu.personMenu();
                   break;
                 case 2:
-                  System.out.println(" Not implemented yet");
+                  lPMenu.LPMenu();
                   break;
                 case 3:
                   loanMenu.start();

@@ -6,7 +6,6 @@ import java.util.Scanner;
 import Containers.ContainerPerson;
 public class PersonController {
 	
-	private ContainerPerson container;
 	
 	public PersonController() {
 		
@@ -15,7 +14,7 @@ public class PersonController {
 		/*TO DO Add error checks*/
 		Scanner keyboard = new Scanner(System.in);
 		int phoneNum = 0;
-		return container.searchForPerson(phoneNum);
+		return ContainerPerson.getInstance().searchForPerson(phoneNum);
 	}
 	
 	/*CRUD METHODS*/
@@ -39,18 +38,17 @@ public class PersonController {
 		city = keyboard.nextLine();
 		System.out.println("Please enter your phone number: ");
 		phone = keyboard.nextInt();
-		
-		container.createPerson(name, address, postalCode, city, phone);
+		ContainerPerson.getInstance().createPerson(name, address, postalCode, city, phone);
 		
 	}
 	
 	public void readPerson() {
-		container.readPerson(askForPhoneNumber());
+		ContainerPerson.getInstance().readPerson(askForPhoneNumber());
 		
 	}
 	
 	public void updatePerson() {
-		container.updatePerson(askForPhoneNumber());
+		ContainerPerson.getInstance().updatePerson(askForPhoneNumber());
 		
 	}
 	
@@ -59,7 +57,7 @@ public class PersonController {
 	/*TO DO make keyboard local for this class */
 	public void deletePerson() {
 		int phoneNumber = askForPhoneNumber();
-		container.deletePerson(phoneNumber);
+		ContainerPerson.getInstance().deletePerson(phoneNumber);
 		
 	}
 	
