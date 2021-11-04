@@ -10,7 +10,7 @@ public class Loan {
 	
 	/* Getting the id, the id is always the size of the container*/
 	public Loan(Person borrower, LP lp, int period) {
-		id = LoanContainer.getInstance().getID();
+		this.id = LoanContainer.getInstance().getID();
 		this.borrower = borrower;
 		this.lp = lp;
 		this.period = period;

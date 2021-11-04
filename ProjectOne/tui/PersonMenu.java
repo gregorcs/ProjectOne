@@ -30,6 +30,7 @@ public class PersonMenu {
 				break;
 			case 0:
 				running = false;
+				break;
             default:
                 System.out.println(" Unknown error occured, choice = "+ userChoice);
                 break;

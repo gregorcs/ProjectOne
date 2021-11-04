@@ -32,6 +32,12 @@ public class LP_Controller {
 		System.out.println("Artist: " + lp.getArtist());
 		System.out.println("Publication Date: " + lp.getDate());
     }
+    public void getLP(LP lp) {
+    	System.out.println("Barcode: " + lp.getBarcode());
+		System.out.println("Title: " + lp.getTitle());
+		System.out.println("Artist: " + lp.getArtist());
+		System.out.println("Publication Date: " + lp.getDate());
+    }
     
     public void updateLP() {
     	LP_Container.getInstance().editLP(askBarcode());
@@ -58,4 +64,16 @@ public class LP_Controller {
     public void printAllLP() {
     	LP_Container.getInstance().printAllLP();
     }
+    public String getAvailability(LP lp) {
+    	if (lp.isRented() == true) {
+    		return "Currently not available";
+    	}
+    	else {
+    		return "Yes";
+    	}
+    	
+    }
+    
+    
+    
 }

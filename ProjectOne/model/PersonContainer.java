@@ -49,6 +49,15 @@ public class PersonContainer {
 		
 	}
 	
+	public void readPerson(Person person) {
+		System.out.println("1. Name: " + person.getName());
+		System.out.println("2. Address: " + person.getAddress());
+		System.out.println("3. Postal code: " + person.getPostalCode());
+		System.out.println("4. City: " + person.getCity());
+		System.out.println("5. Phone number: " + person.getPhone());
+		
+	}
+	
 	public void updatePerson(int phoneNumber) {
 		Person personToUpdate = searchForPerson(phoneNumber);
 		Scanner keyboard = new Scanner(System.in);
@@ -92,4 +101,5 @@ public class PersonContainer {
 		
 		
 	}
+	
 }

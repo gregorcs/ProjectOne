@@ -12,6 +12,7 @@ public class LoanController {
 
 	Scanner keyboard = new Scanner(System.in);
 	PersonMenu personMenu = new PersonMenu();
+	PersonController personController = new PersonController();
 	LP_Controller lpController = new LP_Controller();
 	boolean hasAccount = false;
 	
@@ -20,7 +21,9 @@ public class LoanController {
 	}
 	
 	public void createLoan() {
+		/*checks if they already have an account */
 		if (!hasAccount) {
+			printNeedAccount();
 			int phoneNum;
 			personMenu.personMenu();
 			System.out.println("***Log in***");
@@ -31,13 +34,18 @@ public class LoanController {
 		}
 		
 		else {
-			Person borrower = findAccount(getPhoneNumber());
+			int phoneNum = getPhoneNumber();
+			Person borrower = findAccount(phoneNum);
 			/* TO DO change this to search by name */
 			lpController.printAllLP();
 			int timePeriod = askRentPeriod();
 			LP lp = LP_Container.getInstance().findLP();
 			Loan loan = new Loan(borrower, lp, timePeriod);
-			
+			/*lp is set to rented so it doesn't show up in searches */
+			//LP set rented here
+			lp.setRented(true);
+			System.out.println("Your order is ready: ");
+			printLoan(lp, borrower);
 		}
 		
 	}
@@ -64,5 +72,15 @@ public class LoanController {
 			return null;
 		}
 		return personToFind;
+	}
+	public void printNeedAccount() {
+		System.out.println("You need to create and account");
+	}
+	public void printLoan(LP lp, Person borrower) {
+		personController.readPerson(borrower);
+		lpController.getLP(lp);
+	}
+	public void printAllLoans() {
+		
 	}
 }

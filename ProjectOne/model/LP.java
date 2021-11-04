@@ -9,9 +9,10 @@ import java.util.Scanner;
  */
 
 public class LP {
-    private int barcode, publicationDate;
+    private int barcode, publicationDate, id;
     private String title, artist;
     Scanner keyboard;
+    private boolean isRented = false;
     
     /**
      * Constructor for objects of class LP
@@ -19,10 +20,12 @@ public class LP {
     
     /*TO DO add state variable*/
     public LP(int barcode, String title, String artist, int publicationDate) {
-        this.barcode = barcode;
+    	/* turning this off for now, to use id */
+        //this.barcode = barcode;
         this.title = title;
         this.artist = artist;
         this.publicationDate = publicationDate;
+		this.barcode = barcode;
     }
 
 	public int getBarcode() {
@@ -55,6 +58,14 @@ public class LP {
 	
     public void setDate() {
     	publicationDate = keyboard.nextInt();
+	}
+
+	public boolean isRented() {
+		return isRented;
+	}
+
+	public void setRented(boolean isRented) {
+		this.isRented = isRented;
 	}
    
 }

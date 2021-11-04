@@ -48,6 +48,9 @@ public class PersonController {
 		PersonContainer.getInstance().readPerson(askForPhoneNumber());
 		
 	}
+	public void readPerson(Person person) {
+		PersonContainer.getInstance().readPerson(person);
+	}
 	
 	public void updatePerson() {
 		PersonContainer.getInstance().updatePerson(askForPhoneNumber());

@@ -70,13 +70,22 @@ public class LP_Container {
     
     public void printAllLP() {
 
-    	for (LP item : database) {
-    		printLP(item);
+    	if (database.size() == 0) {
+    		System.out.println("No records available");
     	}
-
+    	else {
+	    	for (LP item : database) {
+	    		/*checks whether LP is available */
+	    		if (item.isRented() == false) {
+	    			printLP(item);
+	    		}
+	    	}
+    	}
     }
     
-    
+    public int getID() {
+    	return database.size();
+    }
     
     
     
