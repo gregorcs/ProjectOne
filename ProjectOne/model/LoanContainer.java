@@ -3,13 +3,17 @@ package model;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import controller.LoanController;
+
 public class LoanContainer {
 
 	private static LoanContainer instance;
 	private ArrayList<Loan> loanList;
+	private LoanController loanController;
 	
 	private LoanContainer () {
 		loanList = new ArrayList<>();
+		loanController = new LoanController();
 	}
 	/*Returns an instance, creates one if one doesn't exist*/
 	public static LoanContainer getInstance() {
@@ -30,6 +34,7 @@ public class LoanContainer {
 		}
 		return loan;
 	}
+	
 	
 	/* CRUD METHODS */
 	
@@ -58,7 +63,14 @@ public class LoanContainer {
 		int id = loanList.size();
 		return id;
 	}
+	public ArrayList<Loan> getLoanArray() {
+		return loanList;
+	}
 	
-	
+	public void printAllLoans() {
+		System.out.println("*****All Loans*****");
+		System.out.println("You have currently: " + loanList.size() + " active loans");
+		System.out.println("*****End of Loans*****");
+	}
 	
 }

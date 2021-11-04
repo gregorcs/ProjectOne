@@ -12,7 +12,7 @@ public class Loan {
 	public Loan(Person borrower, LP lp, int period) {
 		this.id = LoanContainer.getInstance().getID();
 		this.borrower = borrower;
-		this.lp = lp;
+		this.setLp(lp);
 		this.period = period;
 	}
 
@@ -47,6 +47,15 @@ public class Loan {
 
 	public void setPeriod(int period) {
 		this.period = period;
+	}
+
+
+	public LP getLp() {
+		return lp;
+	}
+
+	public void setLp(LP lp) {
+		this.lp = lp;
 	}
 	/* /GETTERS AND SETTERS*/
 }

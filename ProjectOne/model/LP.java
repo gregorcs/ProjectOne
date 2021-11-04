@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class LP {
     private int barcode, publicationDate, id;
     private String title, artist;
-    Scanner keyboard;
+    Scanner keyboard = new Scanner(System.in);
     private boolean isRented = false;
     
     /**

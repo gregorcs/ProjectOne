@@ -49,7 +49,7 @@ public class MainMenu {
                   running = false;
                   break;
                 default:
-                  System.out.println(" Unknown error occured, choice = "+choice);
+                  System.out.println(" Unknown error occured, choice = " + choice);
                   break;
             }
         }
@@ -61,7 +61,7 @@ public class MainMenu {
         System.out.println(" (1) Borrower menu");
         System.out.println(" (2) LP menu");
         System.out.println(" (3) Loan menu");
-        System.out.println(" (4) Generate testdata");// will generate testdata, delete in final version
+        System.out.println(" (4) Generate testdata");// will generate test data, delete in final version
         System.out.println(" (0) Quit the program");
         System.out.print("\n Choice:");
         
