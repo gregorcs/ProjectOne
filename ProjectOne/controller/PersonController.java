@@ -3,10 +3,10 @@ package controller;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Containers.ContainerPerson;
+import model.PersonContainer;
+import model.Person;
 public class PersonController {
 	
-	private ContainerPerson container;
 	
 	public PersonController() {
 		
@@ -15,7 +15,7 @@ public class PersonController {
 		/*TO DO Add error checks*/
 		Scanner keyboard = new Scanner(System.in);
 		int phoneNum = 0;
-		return container.searchForPerson(phoneNum);
+		return PersonContainer.getInstance().searchForPerson(phoneNum);
 	}
 	
 	/*CRUD METHODS*/
@@ -26,7 +26,7 @@ public class PersonController {
 		int postalCode;
 		String city;
 		int phone;
-		
+		/*TO DO make this method in the controller, then return an object here*/
 		/*UI for creating a person*/
 		Scanner keyboard = new Scanner(System.in);
 		System.out.println("Please enter your full name: ");
@@ -35,22 +35,25 @@ public class PersonController {
 		address = keyboard.nextLine();
 		System.out.println("Please enter your postal code: ");
 		postalCode = keyboard.nextInt();
+		keyboard.nextLine();
 		System.out.println("Please enter your city: ");
 		city = keyboard.nextLine();
 		System.out.println("Please enter your phone number: ");
 		phone = keyboard.nextInt();
-		
-		container.createPerson(name, address, postalCode, city, phone);
+		PersonContainer.getInstance().createPerson(name, address, postalCode, city, phone);
 		
 	}
 	
 	public void readPerson() {
-		container.readPerson(askForPhoneNumber());
+		PersonContainer.getInstance().readPerson(askForPhoneNumber());
 		
+	}
+	public void readPerson(Person person) {
+		PersonContainer.getInstance().readPerson(person);
 	}
 	
 	public void updatePerson() {
-		container.updatePerson(askForPhoneNumber());
+		PersonContainer.getInstance().updatePerson(askForPhoneNumber());
 		
 	}
 	
@@ -59,7 +62,7 @@ public class PersonController {
 	/*TO DO make keyboard local for this class */
 	public void deletePerson() {
 		int phoneNumber = askForPhoneNumber();
-		container.deletePerson(phoneNumber);
+		PersonContainer.getInstance().deletePerson(phoneNumber);
 		
 	}
 	

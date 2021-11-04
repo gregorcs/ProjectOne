@@ -3,8 +3,8 @@ import controller.LP_Controller;
 import java.util.Scanner;
 
 public class LPMenu {
-	 private LP_Controller controller;
-	 private UpdateLPMenu upmenu;
+	 private LP_Controller controller = new LP_Controller();
+	 private UpdateLPMenu upmenu = new UpdateLPMenu();
 	 private MainMenu menu;
 	 void LPMenu() {
 	        boolean running = true;
@@ -21,10 +21,12 @@ public class LPMenu {
 	                  upmenu.UpdateLPMenu();
 	                  break;
 	                case 4:
+	                	/*TO DO*/
+	                	/*deleteLP asks for phone number twice*/
 	                  controller.deleteLP();
 	                  break;
 	                case 0:
-	                  menu.mainMenu();
+	                  running = false;
 	                  break;
 	                default:
 	                  System.out.println(" Unknown error occured, choice = "+choice);
@@ -50,4 +52,6 @@ public class LPMenu {
 	        int choice = keyboard.nextInt();
 	        return choice;
 	    }
+	    
+	    
 }

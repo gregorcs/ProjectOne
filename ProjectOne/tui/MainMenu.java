@@ -10,13 +10,16 @@ import java.util.Scanner;
 public class MainMenu {
     // instance variables 
     private LoanMenu loanMenu;
+    private PersonMenu personMenu;
+    private LPMenu lPMenu;
     /**
      * Constructor for objects of class MainMenu
      */
     public MainMenu() {
         // Initialize instance variables
         loanMenu = new LoanMenu();
-        
+        personMenu = new PersonMenu();
+        lPMenu = new LPMenu();
        
     }
     
@@ -24,21 +27,21 @@ public class MainMenu {
         mainMenu();
     }
     
-    void mainMenu() {
+    public void mainMenu() {
         boolean running = true;
         while (running) {
             int choice = writeMainMenu();
             switch (choice) {
                 case 1:
-                  System.out.println(" Not implemented yet");
+                  personMenu.personMenu();
                   break;
                 case 2:
-                  System.out.println(" Not implemented yet");
+                  lPMenu.LPMenu();
                   break;
                 case 3:
                   loanMenu.start();
                   break;
-                case 9:
+                case 4:
                   System.out.println(" Not implemented yet");
                   break;
                 case 0:
@@ -58,7 +61,7 @@ public class MainMenu {
         System.out.println(" (1) Borrower menu");
         System.out.println(" (2) LP menu");
         System.out.println(" (3) Loan menu");
-        System.out.println(" (9) Generate testdata");// will generate testdata, delete in final version
+        System.out.println(" (4) Generate testdata");// will generate testdata, delete in final version
         System.out.println(" (0) Quit the program");
         System.out.print("\n Choice:");
         

@@ -1,5 +1,8 @@
 package tui;
 import java.util.Scanner;
+
+import controller.LP_Controller;
+import controller.LoanController;
 /**
  * Write a description of class LoanMenu here.
  *
@@ -8,12 +11,16 @@ import java.util.Scanner;
  */
 public class LoanMenu {
     // instance variables
+    LoanController loanController;
+    LP_Controller lpController;
     
     /**
      * Constructor for objects of class LoanMenu
      */
     public LoanMenu() {
         // Initialize instance variables
+    	loanController = new LoanController();
+    	lpController = new LP_Controller();
               
     }
 
@@ -23,18 +30,24 @@ public class LoanMenu {
 
     private void loanMenu() {
         boolean running = true;
+        
         while (running) {
             int choice = writeLoanMenu();
             switch (choice) {
                 case 1:
-                  System.out.println(" Not implemented yet");
-                  break;
+                	loanController.createLoan();
+                	break;
+                case 2:
+                	lpController.printAllLP();
+                	break;
+                case 3:
+                	//loanController.printAllLoans():
                 case 0:
-                  running = false;
-                  break;
+                	running = false;
+                	break;
                 default:
-                  System.out.println(" Unknown error occured, choice = " + choice);
-                  break;
+                	System.out.println(" Unknown error occured, choice = " + choice);
+                	break;
             }
         }
     }
@@ -43,6 +56,8 @@ public class LoanMenu {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("****** Loan menu ******");
         System.out.println(" (1) Create loan");
+        System.out.println(" (2) Print available LPs");
+        System.out.println(" (3) Print active loans");
         System.out.println(" (0) Back");
         System.out.print("\n Choice:");
         int choice = getIntegerFromUser(keyboard);
