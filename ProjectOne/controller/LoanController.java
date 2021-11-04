@@ -4,6 +4,7 @@ import java.util.Scanner;
 import model.LP;
 import model.LP_Container;
 import model.Loan;
+import model.LoanContainer;
 import model.Person;
 import model.PersonContainer;
 import tui.PersonMenu;
@@ -46,6 +47,7 @@ public class LoanController {
 			lp.setRented(true);
 			System.out.println("Your order is ready: ");
 			printLoan(lp, borrower);
+			LoanContainer.getInstance().createLoan(borrower, lp, timePeriod);
 		}
 		
 	}
@@ -80,7 +82,19 @@ public class LoanController {
 		personController.readPerson(borrower);
 		lpController.getLP(lp);
 	}
+	
 	public void printAllLoans() {
-		
+		System.out.println("*****All Loans*****");
+		for (Loan item : LoanContainer.getInstance().getLoanArray()) {
+			printLoan(item.getLp(), item.getBorrower());
+		}
+		System.out.println("*****End of Loans*****");
 	}
+	/*
+	public void printAllLoans() {
+		LoanContainer.getInstance().printAllLoans();
+	}
+	*/
+	
+	
 }

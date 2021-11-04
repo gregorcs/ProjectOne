@@ -82,6 +82,39 @@ public class LP_Container {
 	    	}
     	}
     }
+	public void updateLP() {
+		LP lpToUpdate = findLP();
+		Scanner keyboard = new Scanner(System.in);
+		System.out.println("Enter number of what you want to edit: ");
+		printLP(lpToUpdate);
+		int userChoice = 0;
+		userChoice = keyboard.nextInt();
+		keyboard.nextLine();
+		switch (userChoice) {
+		case 1:
+			System.out.println("Enter new barcode: ");
+			lpToUpdate.setBarcode();
+			break;
+		case 2:
+			System.out.println("Enter new title: ");
+			lpToUpdate.setTitle();
+			break;
+		case 3:
+			System.out.println("Enter new artist: ");
+			lpToUpdate.setArtist();
+			break;
+		case 4:
+			System.out.println("Enter new date of publication: ");
+			lpToUpdate.setDate();
+			break;
+		case 0:
+			break;
+        default:
+            System.out.println(" Unknown error occured, choice = "+ userChoice);
+            break;
+			
+		}
+	}
     
     public int getID() {
     	return database.size();

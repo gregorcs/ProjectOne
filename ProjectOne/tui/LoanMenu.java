@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 import controller.LP_Controller;
 import controller.LoanController;
+import model.LoanContainer;
 /**
  * Write a description of class LoanMenu here.
  *
@@ -14,9 +15,7 @@ public class LoanMenu {
     LoanController loanController;
     LP_Controller lpController;
     
-    /**
-     * Constructor for objects of class LoanMenu
-     */
+    /*Constructor for objects of class LoanMenu*/
     public LoanMenu() {
         // Initialize instance variables
     	loanController = new LoanController();
@@ -41,7 +40,8 @@ public class LoanMenu {
                 	lpController.printAllLP();
                 	break;
                 case 3:
-                	//loanController.printAllLoans():
+                	loanController.printAllLoans();
+                	break;
                 case 0:
                 	running = false;
                 	break;
