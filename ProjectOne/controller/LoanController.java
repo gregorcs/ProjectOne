@@ -82,7 +82,7 @@ public class LoanController {
 		personController.readPerson(borrower);
 		lpController.getLP(lp);
 	}
-	
+	/*
 	public void printAllLoans() {
 		System.out.println("*****All Loans*****");
 		for (Loan item : LoanContainer.getInstance().getLoanArray()) {
@@ -90,11 +90,10 @@ public class LoanController {
 		}
 		System.out.println("*****End of Loans*****");
 	}
-	/*
+	*/
 	public void printAllLoans() {
 		LoanContainer.getInstance().printAllLoans();
 	}
-	*/
 	
 	
 }
