@@ -1,55 +1,66 @@
 package controller;
-
 import java.util.Scanner;
-import model.LP;
-import model.LP_Container;
-import model.Loan;
-import model.LoanContainer;
-import model.Person;
-import model.PersonContainer;
+import model.*;
 import tui.PersonMenu;
 
 public class LoanController {
-
-	Scanner keyboard = new Scanner(System.in);
-	PersonMenu personMenu = new PersonMenu();
+	Scanner keyboard;
+	PersonMenu personMenu;
 	PersonController personController = new PersonController();
+	PersonContainer personContainer = new PersonContainer();
 	LP_Controller lpController = new LP_Controller();
-	boolean hasAccount = false;
+	LP_Container lpContainer = new LP_Container();
+	LoanContainer loanContainer = new LoanContainer();
+	public boolean hasAccount;
 	
 	public LoanController() {
-		
+		personMenu = new PersonMenu();
 	}
 	
 	public void createLoan() {
-		/*checks if they already have an account */
+		System.out.println("***Log in***");
+		keyboard = new Scanner(System.in);
+		int phoneNum = getPhoneNumber();
+		// searches if the person is already in the person container
+		Person borrower = findAccount(phoneNum);
+
 		if (!hasAccount) {
 			printNeedAccount();
-			int phoneNum;
-			personMenu.personMenu();
-			System.out.println("***Log in***");
-			/* MAYBE CHANGE THIS TO NAME OR ID OR STH */
-			phoneNum = getPhoneNumber();
-			/*searches if the person is already in the person container */
-			findAccount(phoneNum);
+			personMenu.start();
 		}
-		
-		else {
-			int phoneNum = getPhoneNumber();
-			Person borrower = findAccount(phoneNum);
-			/* TO DO change this to search by name */
+			// G: MAYBE CHANGE THIS TO NAME OR ID OR SMTH -- M: nah, the phone number functions as an ID of sorts
+			// G: TO-DO: change this to search by name -- M: names could be identical, numbers are usually one of a kind
+			
 			lpController.printAllLP();
 			int timePeriod = askRentPeriod();
 			LP lp = LP_Container.getInstance().findLP();
 			Loan loan = new Loan(borrower, lp, timePeriod);
-			/*lp is set to rented so it doesn't show up in searches */
-			//LP set rented here
+			
+			// LP is set to rented so it doesn't show up in searches
 			lp.setRented(true);
 			System.out.println("Your order is ready: ");
 			printLoan(lp, borrower);
 			LoanContainer.getInstance().createLoan(borrower, lp, timePeriod);
-		}
+	}
+	
+	public void returnLP() {
+		System.out.println("***Log in***");
+		keyboard = new Scanner(System.in);
+		int phoneNum = getPhoneNumber();
+		Person borrower = findAccount(phoneNum);
+
+		if (!hasAccount) {
+			printNeedAccount();
+			personMenu.start();
+		}		
 		
+		int id = loanContainer.getID();
+		Loan endLoan = loanContainer.selectLoan(id);
+		LP lp = lpContainer.selectLP();
+		printLoan(lp, borrower);
+		lp.setRented(false);
+		System.out.println("Success! You've returned your LP.");
+		loanContainer.loanList.remove(endLoan);
 	}
 	
 	public int getPhoneNumber() {
@@ -59,41 +70,32 @@ public class LoanController {
 	}
 	
 	public int askRentPeriod() {
-		System.out.println("Type the rent period: ");
+		System.out.println("Enter the rental period: ");
 		int timePeriod = keyboard.nextInt();
 		return timePeriod;
 	}
 	
 	public Person findAccount(int phoneNum) {
-		Person personToFind = PersonContainer.getInstance().searchForPerson(phoneNum);
-		if (personToFind.getPhone() == phoneNum) {
+		Person personToFind = null;
+		personToFind = PersonContainer.getInstance().searchForPerson(phoneNum);
+		if (personToFind == null) {
+			System.out.println("Person not found.");
+		} else if (personToFind.getPhone() == phoneNum) {
 			hasAccount = true;
-		}
-		else {
-			System.out.println("Person not found");
-			return null;
 		}
 		return personToFind;
 	}
+	
 	public void printNeedAccount() {
-		System.out.println("You need to create and account");
+		System.out.println("You need to create an account.");
 	}
+	
 	public void printLoan(LP lp, Person borrower) {
 		personController.readPerson(borrower);
 		lpController.getLP(lp);
 	}
-	/*
-	public void printAllLoans() {
-		System.out.println("*****All Loans*****");
-		for (Loan item : LoanContainer.getInstance().getLoanArray()) {
-			printLoan(item.getLp(), item.getBorrower());
-		}
-		System.out.println("*****End of Loans*****");
-	}
-	*/
+	
 	public void printAllLoans() {
 		LoanContainer.getInstance().printAllLoans();
 	}
-	
-	
 }

@@ -1,21 +1,17 @@
 package model;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import controller.LoanController;
-
 public class LoanContainer {
-
 	private static LoanContainer instance;
-	private ArrayList<Loan> loanList;
-	private LoanController loanController;
+	public ArrayList<Loan> loanList;
+	Scanner keyboard;
 	
-	private LoanContainer () {
+	public LoanContainer () {
 		loanList = new ArrayList<>();
-		loanController = new LoanController();
 	}
-	/*Returns an instance, creates one if one doesn't exist*/
+	
+	// returns an instance, creates one if needed
 	public static LoanContainer getInstance() {
 		if (instance == null) {
             instance = new LoanContainer();
@@ -23,9 +19,10 @@ public class LoanContainer {
 
         return instance;
 	}
-	
-	/* Searches for a person base on their phone number */	
+
 	public Loan searchForLoan (int id) {
+		keyboard = new Scanner(System.in);
+		id = keyboard.nextInt();
 		Loan loan = null;
 		for (Loan tempLoan : loanList) {
 			if (tempLoan.getId() == id) {
@@ -38,39 +35,43 @@ public class LoanContainer {
 	
 	/* CRUD METHODS */
 	
-	//adds the person to the singleton
+	// adds the person to the singleton
 	public void createLoan(Person borrower, LP lp, int rentPeriod) {
 		loanList.add(new Loan(borrower, lp, rentPeriod));
 	}
 	
 	public void readLoan(int id) {
-		Loan loan = searchForLoan(id);
-
-		
+		Loan loan = searchForLoan(id);		
 	}
 	
 	public void updateLoan() {
 		
 	}
+	
+	public Loan selectLoan(int id) {
+		id = LoanContainer.getInstance().getID();
+		System.out.println(LoanContainer.getInstance().getID());
+		System.out.println("Please copy the Loan ID of the LP you wish to return.");
+		return searchForLoan(id);
+	}
 
 	public void deleteLoan(int id) {
 		Loan loanToRemove = searchForLoan(id);
 		loanList.remove(loanToRemove);
-		
-		
 	}
+	
 	public int getID() {
 		int id = loanList.size();
 		return id;
 	}
+	
 	public ArrayList<Loan> getLoanArray() {
 		return loanList;
 	}
 	
 	public void printAllLoans() {
 		System.out.println("*****All Loans*****");
-		System.out.println("You have currently: " + loanList.size() + " active loans");
-		System.out.println("*****End of Loans*****");
+		System.out.println("You have currently " + loanList.size() + " active loans");
+		System.out.println("*******************");
 	}
-	
 }

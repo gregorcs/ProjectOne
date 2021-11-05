@@ -4,23 +4,20 @@ import java.util.Scanner;
 import tui.UpdateLPMenu;
 import controller.*;
 
-/**
- * The Container class contains LP metadata.
- *
- * @author (MaxRulez)
- * @version (2/11/21, v0)
- */
-
 public class LP_Container {
 	private ArrayList <LP> database;
+	private LP_Controller controller;
+	private LP lp;
+	private UpdateLPMenu upmenu;
 	private static LP_Container instance;
     Scanner keyboard;
-    private UpdateLPMenu upmenu;
-    private LP_Controller controller = new LP_Controller();
     LP LPToModify;
     
-    private LP_Container() {
+
+
+  public LP_Container() {
     	database = new ArrayList<>();
+    	controller = new LP_Controller();
     }
     
     public static LP_Container getInstance() {
@@ -46,12 +43,28 @@ public class LP_Container {
     	database.remove(lp);
     }
     
+    public LP selectLP() {
+    	for (LP i : database) {
+     		printLP(i);
+     	}
+
+    	int barcode = controller.askBarcode();
+    	for (LP i : database) {
+    		if (i.getBarcode() == barcode) {
+    			lp = i;
+    		}
+    	}
+    	return lp;     	
+    }
+    
     public LP findLP() {
     	int barcode = controller.askBarcode();
     	LP lp = null;
     	for (LP i : database) {
     		if (i.getBarcode() == barcode) {
     			lp = i;
+    		} else {
+    			System.out.println("We couldn't find an LP with this barcode.");
     		}
     	}
     	return lp;
@@ -69,59 +82,19 @@ public class LP_Container {
     }
     
     public void printAllLP() {
-
     	if (database.size() == 0) {
-    		System.out.println("No records available");
-    	}
-    	else {
+    		System.out.println("No copies available.");
+    	} else {
 	    	for (LP item : database) {
-	    		/*checks whether LP is available */
+	    		// checks whether LP is available or not
 	    		if (item.isRented() == false) {
 	    			printLP(item);
 	    		}
 	    	}
     	}
     }
-	public void updateLP() {
-		LP lpToUpdate = findLP();
-		Scanner keyboard = new Scanner(System.in);
-		System.out.println("Enter number of what you want to edit: ");
-		printLP(lpToUpdate);
-		int userChoice = 0;
-		userChoice = keyboard.nextInt();
-		keyboard.nextLine();
-		switch (userChoice) {
-		case 1:
-			System.out.println("Enter new barcode: ");
-			lpToUpdate.setBarcode();
-			break;
-		case 2:
-			System.out.println("Enter new title: ");
-			lpToUpdate.setTitle();
-			break;
-		case 3:
-			System.out.println("Enter new artist: ");
-			lpToUpdate.setArtist();
-			break;
-		case 4:
-			System.out.println("Enter new date of publication: ");
-			lpToUpdate.setDate();
-			break;
-		case 0:
-			break;
-        default:
-            System.out.println(" Unknown error occured, choice = "+ userChoice);
-            break;
-			
-		}
-	}
     
     public int getID() {
     	return database.size();
-    }
-    
-    
-    
-    
-    
+    }    
 }

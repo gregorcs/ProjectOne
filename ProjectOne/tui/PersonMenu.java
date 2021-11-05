@@ -1,44 +1,83 @@
 package tui;
-
 import java.util.Scanner;
-
 import controller.PersonController;
+import model.Person;
+import model.PersonContainer;
 
 public class PersonMenu {
-
-	private PersonController personController;
+	private PersonContainer container;
+	private PersonController controller;
+	private MainMenu menu;
 	
 	public PersonMenu() {
-		personController = new PersonController();
+		container = new PersonContainer();
+		controller = new PersonController();
 	}
-	public void personMenu() {
+	
+	public void start() {
 		boolean running = true;
 		while(running) {
 			int userChoice = writePersonMenu();
 			switch(userChoice) {
 			case 1:
-				personController.createPerson();
+				controller.createPerson();
 				break;
 			case 2:
-				personController.readPerson();
+				controller.readPerson();
 				break;
 			case 3:
-				personController.updatePerson();
+				controller.updatePerson();
 				break;
 			case 4:
-				personController.deletePerson();
+				controller.deletePerson();
 				break;
 			case 0:
-				running = false;
+				menu = new MainMenu();
+				menu.start();
 				break;
             default:
-                System.out.println(" Unknown error occured, choice = "+ userChoice);
+            	menu = new MainMenu();
+                menu.errorMess();
                 break;
 			}
 			
 		}
+	}
 		
-
+		public void updatePerson(int phoneNumber) {
+			Person personToUpdate = container.searchForPerson(phoneNumber);
+			Scanner keyboard = new Scanner(System.in);
+			System.out.println("Pick the attribute you'd like to edit: ");
+			container.readPerson(phoneNumber);
+			int userChoice = 0;
+			userChoice = keyboard.nextInt();
+			keyboard.nextLine();
+			switch (userChoice) {
+			case 1:
+				System.out.println("Enter your new name: ");
+				personToUpdate.setName(keyboard.nextLine());
+				break;
+			case 2:
+				System.out.println("Enter your new address: ");
+				personToUpdate.setAddress(keyboard.nextLine());
+				break;
+			case 3:
+				System.out.println("Enter your new postal code: ");
+				personToUpdate.setPostalCode(keyboard.nextInt());
+				break;
+			case 4:
+				System.out.println("Enter your new city: ");
+				personToUpdate.setCity(keyboard.nextLine());
+				break;
+			case 5:
+				System.out.println("Enter your new phone number: ");
+				personToUpdate.setPhone(keyboard.nextInt());
+				break;
+	        default:
+	            menu.errorMess();
+	            break;
+				
+			}
 	}
 	
 	private int writePersonMenu() {
@@ -48,11 +87,11 @@ public class PersonMenu {
         System.out.println(" (2) Get Person");
         System.out.println(" (3) Update Person");
         System.out.println(" (4) Delete Person");
-        System.out.println(" (0) Go back");
+        System.out.println(" (0) Return to Main Menu");
         System.out.print("\n Choice:");
         
         while (!keyboard.hasNextInt()) {
-            System.out.println("Input must be a number - please try again.");
+            menu.in_errorMess();
             keyboard.nextLine();
         }
         int choice = keyboard.nextInt();

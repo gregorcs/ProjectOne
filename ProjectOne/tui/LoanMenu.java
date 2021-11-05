@@ -1,26 +1,16 @@
 package tui;
 import java.util.Scanner;
-
 import controller.LP_Controller;
 import controller.LoanController;
-import model.LoanContainer;
-/**
- * Write a description of class LoanMenu here.
- *
- * @author Mogens Holm Iversen
- * @version 0.1.0 Initial draft version 
- */
+
 public class LoanMenu {
-    // instance variables
     LoanController loanController;
     LP_Controller lpController;
+    MainMenu menu;
     
-    /*Constructor for objects of class LoanMenu*/
     public LoanMenu() {
-        // Initialize instance variables
     	loanController = new LoanController();
     	lpController = new LP_Controller();
-              
     }
 
     public void start() {
@@ -42,11 +32,14 @@ public class LoanMenu {
                 case 3:
                 	loanController.printAllLoans();
                 	break;
+                case 4:
+                	loanController.returnLP();
                 case 0:
-                	running = false;
+                	menu = new MainMenu();
+                	menu.start();
                 	break;
                 default:
-                	System.out.println(" Unknown error occured, choice = " + choice);
+                	menu.errorMess();
                 	break;
             }
         }
@@ -58,7 +51,8 @@ public class LoanMenu {
         System.out.println(" (1) Create loan");
         System.out.println(" (2) Print available LPs");
         System.out.println(" (3) Print active loans");
-        System.out.println(" (0) Back");
+        System.out.println(" (4) Return LP");
+        System.out.println(" (0) Return to Main Menu");
         System.out.print("\n Choice:");
         int choice = getIntegerFromUser(keyboard);
         return choice;
@@ -66,7 +60,7 @@ public class LoanMenu {
     
     private int getIntegerFromUser(Scanner keyboard) {
         while (!keyboard.hasNextInt()) {
-            System.out.println("Input must be a number - please try again.");
+            menu.in_errorMess();
             keyboard.nextLine();
         }
         return keyboard.nextInt();

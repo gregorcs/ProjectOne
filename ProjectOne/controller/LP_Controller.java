@@ -1,11 +1,9 @@
 package controller;
 import java.util.Scanner;
-
 import model.LP;
 import model.LP_Container;
 
 public class LP_Controller {
-	private LP_Container container;
 	Scanner keyboard;
 	
     public void createLP() {
@@ -15,7 +13,7 @@ public class LP_Controller {
     	
 		System.out.println("Please enter the title of the LP: ");
 		title = keyboard.nextLine();
-		System.out.println("Please enter the name of the composing artist: ");
+		System.out.println("Please enter the name of the composing artist(s): ");
 		artist = keyboard.nextLine();
 		System.out.println("Please enter the barcode (found on back of the cover): ");
 		barcode = keyboard.nextInt();
@@ -24,6 +22,7 @@ public class LP_Controller {
 		
 		LP_Container.getInstance().addLP(barcode, title, artist, publicationDate);
     }
+   
     
     public void getLP() {
     	LP lp = LP_Container.getInstance().findLP();
@@ -32,6 +31,7 @@ public class LP_Controller {
 		System.out.println("Artist: " + lp.getArtist());
 		System.out.println("Publication Date: " + lp.getDate());
     }
+    
     public void getLP(LP lp) {
     	System.out.println("Barcode: " + lp.getBarcode());
 		System.out.println("Title: " + lp.getTitle());
@@ -49,7 +49,7 @@ public class LP_Controller {
 
     public int askBarcode() {
     	int barcode;
-    	Scanner keyboard = new Scanner(System.in);
+		keyboard = new Scanner(System.in);
     	System.out.println("Please enter the barcode of the LP: ");
     	barcode = keyboard.nextInt();
     	
@@ -64,16 +64,15 @@ public class LP_Controller {
     public void printAllLP() {
     	LP_Container.getInstance().printAllLP();
     }
+    
     public String getAvailability(LP lp) {
     	if (lp.isRented() == true) {
     		return "Currently not available";
     	}
     	else {
-    		return "Yes";
+    		// possibly display no. of available copies if we have the time to bling it out
+    		return "Currently available";
     	}
     	
     }
-    
-    
-    
 }

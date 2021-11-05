@@ -1,26 +1,12 @@
 package tui;
 import java.util.Scanner;
 
-/**
- * Write a description of class MainMenu here.
- *
- * @author Mogens Holm Iversen
- * @version 0.1.0 Initial draft version 
- */
 public class MainMenu {
-    // instance variables 
     private LoanMenu loanMenu;
     private PersonMenu personMenu;
-    private LPMenu lPMenu;
-    /**
-     * Constructor for objects of class MainMenu
-     */
+    private LPMenu lpMenu;
+    
     public MainMenu() {
-        // Initialize instance variables
-        loanMenu = new LoanMenu();
-        personMenu = new PersonMenu();
-        lPMenu = new LPMenu();
-       
     }
     
     public void start() {
@@ -33,44 +19,50 @@ public class MainMenu {
             int choice = writeMainMenu();
             switch (choice) {
                 case 1:
-                  personMenu.personMenu();
+                  personMenu = new PersonMenu();
+                  personMenu.start();
                   break;
                 case 2:
-                  lPMenu.LPMenu();
+                  lpMenu = new LPMenu(); 	
+                  lpMenu.start();
                   break;
                 case 3:
+                  loanMenu = new LoanMenu();
                   loanMenu.start();
                   break;
-                case 4:
-                  System.out.println(" Not implemented yet");
-                  break;
                 case 0:
-                  System.out.println(" Thank you and goodbye.");
+                  System.out.println("Thank you and goodbye.");
                   running = false;
                   break;
                 default:
-                  System.out.println(" Unknown error occured, choice = " + choice);
+                	errorMess();
                   break;
             }
         }
     }
 
-    private int writeMainMenu() {
+   public int writeMainMenu() {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("****** Main menu ******");
         System.out.println(" (1) Borrower menu");
         System.out.println(" (2) LP menu");
         System.out.println(" (3) Loan menu");
-        System.out.println(" (4) Generate testdata");// will generate test data, delete in final version
         System.out.println(" (0) Quit the program");
         System.out.print("\n Choice:");
         
         while (!keyboard.hasNextInt()) {
-            System.out.println("Input must be a number - please try again");
+        	in_errorMess();
             keyboard.nextLine();
         }
         int choice = keyboard.nextInt();
         return choice;
     }
    
+    public void errorMess() {
+    	System.out.println("Unknown error occurred.");
+    }
+    
+    public void in_errorMess() {
+   	 System.out.println("Input must be a number - please try again.");
+    }
 }

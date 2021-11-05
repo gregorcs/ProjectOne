@@ -3,10 +3,15 @@ import controller.LP_Controller;
 import java.util.Scanner;
 
 public class LPMenu {
-	 private LP_Controller controller = new LP_Controller();
-	 private UpdateLPMenu upmenu = new UpdateLPMenu();
+	 private LP_Controller controller;
+	 private UpdateLPMenu upmenu;
 	 private MainMenu menu;
-	 void LPMenu() {
+	 
+	 public LPMenu() {
+		 controller = new LP_Controller();
+     }
+	 
+	 public void start() {
 	        boolean running = true;
 	        while (running) {
 	            int choice = writeLPMenu();
@@ -18,24 +23,25 @@ public class LPMenu {
 	                  controller.getLP();
 	                  break;
 	                case 3:
+	                  upmenu = new UpdateLPMenu();
 	                  upmenu.UpdateLPMenu();
 	                  break;
 	                case 4:
-	                	/*TO DO*/
-	                	/*deleteLP asks for phone number twice*/
+	                	// TO-DO: deleteLP asks for phone number twice
 	                  controller.deleteLP();
 	                  break;
 	                case 0:
-	                  running = false;
+	                  menu = new MainMenu();
+	                  menu.start();
 	                  break;
 	                default:
-	                  System.out.println(" Unknown error occured, choice = "+choice);
+	                	menu.errorMess();
 	                  break;
 	            }
 	        }
 	    }
 
-	    private int writeLPMenu() {
+	    public int writeLPMenu() {
 	        Scanner keyboard = new Scanner(System.in);
 	        System.out.println("****** LP Menu ******");
 	        System.out.println(" (1) Create LP");
@@ -46,12 +52,10 @@ public class LPMenu {
 	        System.out.print("\n Choice:");
 	        
 	        while (!keyboard.hasNextInt()) {
-	            System.out.println("Input must be a number - please try again.");
+	        	menu.in_errorMess();
 	            keyboard.nextLine();
 	        }
 	        int choice = keyboard.nextInt();
 	        return choice;
-	    }
-	    
-	    
+	    }   
 }

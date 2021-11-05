@@ -1,19 +1,18 @@
 package controller;
-
-import java.util.ArrayList;
 import java.util.Scanner;
-
 import model.PersonContainer;
 import model.Person;
 public class PersonController {
 	
+Scanner keyboard;
+String niceties = "Please enter your ";
 	
 	public PersonController() {
-		
 	}
+	
 	public Person selectPerson () {
-		/*TO DO Add error checks*/
-		Scanner keyboard = new Scanner(System.in);
+		// TO-DO: add error checks
+		keyboard = new Scanner(System.in);
 		int phoneNum = 0;
 		return PersonContainer.getInstance().searchForPerson(phoneNum);
 	}
@@ -21,61 +20,51 @@ public class PersonController {
 	/*CRUD METHODS*/
 	
 	public void createPerson() {
-		String name;
-		String address;
-		int postalCode;
-		String city;
-		int phone;
-		/*TO DO make this method in the controller, then return an object here*/
-		/*UI for creating a person*/
-		Scanner keyboard = new Scanner(System.in);
-		System.out.println("Please enter your full name: ");
+		String name, address, city;
+		int postalCode, phone;
+
+		// UI for creating a person
+		keyboard = new Scanner(System.in);
+		System.out.println(niceties + "full name: ");
 		name = keyboard.nextLine();
-		System.out.println("Please enter your address: ");
+		System.out.println(niceties + "address: ");
 		address = keyboard.nextLine();
-		System.out.println("Please enter your postal code: ");
+		System.out.println(niceties + "postal code: ");
 		postalCode = keyboard.nextInt();
 		keyboard.nextLine();
-		System.out.println("Please enter your city: ");
+		System.out.println(niceties + "city: ");
 		city = keyboard.nextLine();
-		System.out.println("Please enter your phone number: ");
+		System.out.println(niceties + "phone number: ");
 		phone = keyboard.nextInt();
 		PersonContainer.getInstance().createPerson(name, address, postalCode, city, phone);
-		
 	}
 	
 	public void readPerson() {
 		PersonContainer.getInstance().readPerson(askForPhoneNumber());
-		
 	}
+	
 	public void readPerson(Person person) {
 		PersonContainer.getInstance().readPerson(person);
 	}
 	
 	public void updatePerson() {
-		PersonContainer.getInstance().updatePerson(askForPhoneNumber());
-		
+		PersonContainer.getInstance();
+		askForPhoneNumber();
 	}
-	
-	
-	
-	/*TO DO make keyboard local for this class */
+
 	public void deletePerson() {
+		keyboard = new Scanner(System.in);
 		int phoneNumber = askForPhoneNumber();
 		PersonContainer.getInstance().deletePerson(phoneNumber);
-		
 	}
 	
+	// TO-DO: add error handling
 	public int askForPhoneNumber() {
 		int phoneNumber;
-		Scanner keyboard = new Scanner(System.in);
-		System.out.println("Please enter your phone number to make changes: ");
+		keyboard = new Scanner(System.in);
+		System.out.println(niceties + "phone number to make changes: ");
 		phoneNumber = keyboard.nextInt();
 		
 		return phoneNumber;
-	}
-	
-	
-	
-	
+	}	
 }

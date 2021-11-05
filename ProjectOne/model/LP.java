@@ -1,27 +1,14 @@
 package model;
 import java.util.Scanner;
 
-/**
- * Creates the LP objects with suitable attributes (barcode, title, artist, publication date).
- *
- * @author (MaxRulez)
- * @version (2/11/21, v0)
- */
-
 public class LP {
-    private int barcode, publicationDate, id;
+    private int barcode, publicationDate;
     private String title, artist;
-    Scanner keyboard = new Scanner(System.in);
+    Scanner keyboard;
     private boolean isRented = false;
     
-    /**
-     * Constructor for objects of class LP
-     */
-    
-    /*TO DO add state variable*/
+    // TO-DO: add state variable
     public LP(int barcode, String title, String artist, int publicationDate) {
-    	/* turning this off for now, to use id */
-        //this.barcode = barcode;
         this.title = title;
         this.artist = artist;
         this.publicationDate = publicationDate;
@@ -67,5 +54,4 @@ public class LP {
 	public void setRented(boolean isRented) {
 		this.isRented = isRented;
 	}
-   
 }
