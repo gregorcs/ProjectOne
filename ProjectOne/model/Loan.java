@@ -7,8 +7,7 @@ public class Loan {
 	private LP lp;
 	private String state = "new";
 	private int period;
-	
-	/* Getting the id, the id is always the size of the container*/
+
 	public Loan(Person borrower, LP lp, int period) {
 		this.id = LoanContainer.getInstance().getID();
 		this.borrower = borrower;
@@ -49,7 +48,6 @@ public class Loan {
 		this.period = period;
 	}
 
-
 	public LP getLp() {
 		return lp;
 	}
@@ -57,5 +55,4 @@ public class Loan {
 	public void setLp(LP lp) {
 		this.lp = lp;
 	}
-	/* /GETTERS AND SETTERS*/
 }

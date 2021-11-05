@@ -7,7 +7,6 @@ public class LP {
     Scanner keyboard;
     private boolean isRented = false;
     
-    // TO-DO: add state variable
     public LP(int barcode, String title, String artist, int publicationDate) {
         this.title = title;
         this.artist = artist;

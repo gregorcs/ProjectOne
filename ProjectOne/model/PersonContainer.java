@@ -1,7 +1,6 @@
 package model;
 import java.util.ArrayList;
 
-//Singleton
 public class PersonContainer {
 	private static PersonContainer instance;
 	private ArrayList<Person> personList;
@@ -9,8 +8,7 @@ public class PersonContainer {
 	public PersonContainer() {
 		personList = new ArrayList<>();
 	}
-	
-	// returns an instance, creates one if one doesn't exist
+
 	public static PersonContainer getInstance() {
 		if (instance == null) {
             instance = new PersonContainer();
@@ -19,7 +17,6 @@ public class PersonContainer {
         return instance;
 	}
 	
-	// searches for a person based on their phone number
 	public Person searchForPerson (int phoneNumber) {
 		Person person = null;
 		for (Person tempPerson : personList) {
@@ -33,8 +30,6 @@ public class PersonContainer {
 	}
 	
 	/* CRUD METHODS */
-	
-	// adds the person to the singleton
 	public void createPerson(String name, String address, int postalCode, String city, int phone) {
 		personList.add(new Person(name, address, postalCode, city, phone));
 	}

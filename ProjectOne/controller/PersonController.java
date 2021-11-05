@@ -11,19 +11,16 @@ String niceties = "Please enter your ";
 	}
 	
 	public Person selectPerson () {
-		// TO-DO: add error checks
 		keyboard = new Scanner(System.in);
 		int phoneNum = 0;
 		return PersonContainer.getInstance().searchForPerson(phoneNum);
 	}
 	
 	/*CRUD METHODS*/
-	
 	public void createPerson() {
 		String name, address, city;
 		int postalCode, phone;
-
-		// UI for creating a person
+		
 		keyboard = new Scanner(System.in);
 		System.out.println(niceties + "full name: ");
 		name = keyboard.nextLine();
@@ -58,7 +55,6 @@ String niceties = "Please enter your ";
 		PersonContainer.getInstance().deletePerson(phoneNumber);
 	}
 	
-	// TO-DO: add error handling
 	public int askForPhoneNumber() {
 		int phoneNumber;
 		keyboard = new Scanner(System.in);

@@ -7,14 +7,11 @@ import controller.*;
 public class LP_Container {
 	private ArrayList <LP> database;
 	private LP_Controller controller;
-	private LP lp;
 	private UpdateLPMenu upmenu;
 	private static LP_Container instance;
     Scanner keyboard;
-    LP LPToModify;
+    LP LPToModify, LPToReturn;
     
-
-
   public LP_Container() {
     	database = new ArrayList<>();
     	controller = new LP_Controller();
@@ -43,18 +40,14 @@ public class LP_Container {
     	database.remove(lp);
     }
     
-    public LP selectLP() {
-    	for (LP i : database) {
-     		printLP(i);
-     	}
-
-    	int barcode = controller.askBarcode();
+    public LP selectLP(int barcode) {
+		LP lp = null;
     	for (LP i : database) {
     		if (i.getBarcode() == barcode) {
     			lp = i;
-    		}
-    	}
-    	return lp;     	
+    	    }
+        }
+		return lp;
     }
     
     public LP findLP() {
@@ -73,7 +66,7 @@ public class LP_Container {
     public LP getLPToModify() {
     	return LPToModify;
     }
-    
+
     public void printLP(LP lp) {
         System.out.println("Title: " + lp.getTitle());
         System.out.println("Artist: " + lp.getArtist());
@@ -86,7 +79,7 @@ public class LP_Container {
     		System.out.println("No copies available.");
     	} else {
 	    	for (LP item : database) {
-	    		// checks whether LP is available or not
+	  
 	    		if (item.isRented() == false) {
 	    			printLP(item);
 	    		}

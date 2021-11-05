@@ -10,8 +10,7 @@ public class LoanContainer {
 	public LoanContainer () {
 		loanList = new ArrayList<>();
 	}
-	
-	// returns an instance, creates one if needed
+
 	public static LoanContainer getInstance() {
 		if (instance == null) {
             instance = new LoanContainer();
@@ -34,14 +33,12 @@ public class LoanContainer {
 	
 	
 	/* CRUD METHODS */
-	
-	// adds the person to the singleton
 	public void createLoan(Person borrower, LP lp, int rentPeriod) {
 		loanList.add(new Loan(borrower, lp, rentPeriod));
 	}
 	
 	public void readLoan(int id) {
-		Loan loan = searchForLoan(id);		
+		searchForLoan(id);		
 	}
 	
 	public void updateLoan() {

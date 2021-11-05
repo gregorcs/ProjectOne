@@ -67,10 +67,9 @@ public class LP_Controller {
     
     public String getAvailability(LP lp) {
     	if (lp.isRented() == true) {
-    		return "Currently not available";
+    		return "Currently unavailable";
     	}
     	else {
-    		// possibly display no. of available copies if we have the time to bling it out
     		return "Currently available";
     	}
     	

@@ -21,22 +21,18 @@ public class LoanController {
 		System.out.println("***Log in***");
 		keyboard = new Scanner(System.in);
 		int phoneNum = getPhoneNumber();
-		// searches if the person is already in the person container
 		Person borrower = findAccount(phoneNum);
 
 		if (!hasAccount) {
 			printNeedAccount();
 			personMenu.start();
 		}
-			// G: MAYBE CHANGE THIS TO NAME OR ID OR SMTH -- M: nah, the phone number functions as an ID of sorts
-			// G: TO-DO: change this to search by name -- M: names could be identical, numbers are usually one of a kind
-			
+		
 			lpController.printAllLP();
 			int timePeriod = askRentPeriod();
 			LP lp = LP_Container.getInstance().findLP();
 			Loan loan = new Loan(borrower, lp, timePeriod);
 			
-			// LP is set to rented so it doesn't show up in searches
 			lp.setRented(true);
 			System.out.println("Your order is ready: ");
 			printLoan(lp, borrower);
@@ -56,7 +52,9 @@ public class LoanController {
 		
 		int id = loanContainer.getID();
 		Loan endLoan = loanContainer.selectLoan(id);
-		LP lp = lpContainer.selectLP();
+		int barcode = lpController.askBarcode();
+		LP lp = LP_Container.getInstance().selectLP(barcode);
+		
 		printLoan(lp, borrower);
 		lp.setRented(false);
 		System.out.println("Success! You've returned your LP.");
@@ -91,7 +89,10 @@ public class LoanController {
 	}
 	
 	public void printLoan(LP lp, Person borrower) {
+		System.out.println("***ACCOUNT***");
 		personController.readPerson(borrower);
+		System.out.println("");
+		System.out.println("***LP***");
 		lpController.getLP(lp);
 	}
 	
